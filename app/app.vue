@@ -27,33 +27,49 @@ const open = ref(true);
 </script>
 
 <template>
-  <UApp>
-    <div class="flex w-[100%] items-center mt-5">
-      <Clock class="w-[50%] bg-blue-900 rounded-2xl p-5 h-[100%]" />
-      <UCollapsible v-model:open="open" class="flex flex-col gap-2 w-[50%]">
-        <UButton
-          class="group"
-          label="Calendar"
-          color="neutral"
-          variant="subtle"
-          trailing-icon="i-lucide-chevron-down"
-          :ui="{
-            trailingIcon:
-              'group-data-[state=open]:rotate-180 transition-transform duration-200',
-          }"
-          block
-        />
+  <div class="select-none">
+    <UApp class="">
+      <div class="flex w-[100%] items-center mt-5 h-[100%]">
+        <!--
+        The Greeter and the clock components placed above each other
+      -->
+        <div class="w-[50%]">
+          <Greeter />
+          <Clock class="bg-blue-900 rounded-2xl p-5 h-[100%]" />
+        </div>
 
-        <template #content>
-          <UCalendar
-            disabled
-            :month-controls="false"
-            :year-controls="false"
-            color="secondary"
-            size="xl"
+        <!--
+        The callendar component inside a collapsible
+      -->
+        <UCollapsible
+          v-model:open="open"
+          class="flex flex-col gap-2 w-[50%] m-5"
+        >
+          <UButton
+            class="group"
+            label="Calendar"
+            color="neutral"
+            variant="subtle"
+            trailing-icon="i-lucide-chevron-down"
+            :ui="{
+              trailingIcon:
+                'group-data-[state=open]:rotate-180 transition-transform duration-200 h-[100%]',
+            }"
+            block
           />
-        </template>
-      </UCollapsible>
-    </div>
-  </UApp>
+
+          <template #content>
+            <UCalendar
+              disabled
+              :month-controls="false"
+              :year-controls="false"
+              class="bg-slate-800 rounded-2xl p-2"
+              color="secondary"
+              size="xl"
+            />
+          </template>
+        </UCollapsible>
+      </div>
+    </UApp>
+  </div>
 </template>
