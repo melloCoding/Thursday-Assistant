@@ -33,17 +33,30 @@ const open = ref(true);
         <!--
         The Greeter and the clock components placed above each other
       -->
-        <div class="w-[50%]">
+        <div class="w-[50%] bg-blue-900 rounded-2xl p-5 ml-5">
           <Greeter />
-          <Clock class="bg-blue-900 rounded-2xl p-5 h-[100%]" />
+
+          <Clock class="h-[100%]" />
         </div>
 
         <!--
         The callendar component inside a collapsible
       -->
+        <div class="flex flex-col gap-2 w-[50%] m-5">
+          <UCalendar
+            disabled
+            :month-controls="false"
+            :year-controls="false"
+            class="bg-slate-800 rounded-2xl p-5"
+            color="secondary"
+            size="xl"
+          />
+        </div>
+
+        <!--
         <UCollapsible
           v-model:open="open"
-          class="flex flex-col gap-2 w-[50%] m-5"
+          class=""
         >
           <UButton
             class="group"
@@ -59,16 +72,11 @@ const open = ref(true);
           />
 
           <template #content>
-            <UCalendar
-              disabled
-              :month-controls="false"
-              :year-controls="false"
-              class="bg-slate-800 rounded-2xl p-2"
-              color="secondary"
-              size="xl"
-            />
+            
           </template>
         </UCollapsible>
+
+        <-- todo use mistral 2b -->
       </div>
     </UApp>
   </div>

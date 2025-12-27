@@ -8,6 +8,21 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
 
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+    disableTransition: true,
+    classSuffix: ''
+  },
+
+   app: {
+    head: {
+      htmlAttrs: {
+        class: 'dark'
+      }
+    }
+  },
+
   devtools: {
     enabled: true
   },

@@ -2,6 +2,7 @@
   <div class="text-center m-5">
     <div>
       <h1 class="text-2xl">{{ time }}</h1>
+      <p class="text-2xl">on</p>
       <h3 class="text-xl">{{ date }}</h3>
     </div>
   </div>
