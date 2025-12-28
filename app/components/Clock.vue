@@ -1,9 +1,9 @@
 <template>
   <div class="text-center m-5">
     <div>
-      <h1 class="text-2xl">{{ time }}</h1>
-      <p class="text-2xl">on</p>
-      <h3 class="text-xl">{{ date }}</h3>
+      <h1 class="text-2xl">{{ timeOfDay }} its {{ time }}</h1>
+      <p class="text-xl">on</p>
+      <h3 class="text-2xl">{{ date }}</h3>
     </div>
   </div>
 </template>
@@ -34,11 +34,30 @@ const updateDateTime = () => {
 };
 
 onMounted(() => {
-  updateDateTime();
-  intervalId = setInterval(updateDateTime, 1000);
+  timeAndGreeter();
+  intervalId = setInterval(timeAndGreeter, 1000);
 });
 
 onBeforeUnmount(() => {
   clearInterval(intervalId);
 });
+
+let currentHour = new Date().getHours();
+let timeOfDay = ref("");
+
+function greeter() {
+  if (currentHour <= 12) {
+    timeOfDay.value = "Good Morning";
+  } else if (currentHour > 12 && currentHour < 16) {
+    timeOfDay.value = "Good Afternoon";
+  } else {
+    timeOfDay.value = "Good Evening";
+  }
+  console.log(currentHour);
+}
+
+function timeAndGreeter() {
+  updateDateTime();
+  greeter();
+}
 </script>
