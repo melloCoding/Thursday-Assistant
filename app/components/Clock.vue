@@ -1,7 +1,7 @@
 <template>
   <div class="text-center m-5">
     <div>
-      <h1 class="text-2xl">{{ timeOfDay }} its {{ time }}</h1>
+      <h1 class="text-2xl">{{ greeterText }} its {{ time }}</h1>
       <p class="text-xl">on</p>
       <h3 class="text-2xl">{{ date }}</h3>
     </div>
@@ -11,11 +11,14 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
-const time = ref("");
-const date = ref("");
+const time = ref(""); // ref for current time
+const date = ref(""); // ref for current date
 
 let intervalId;
 
+/**
+ * Update the date and time refs
+ */
 const updateDateTime = () => {
   const now = new Date();
 
@@ -33,29 +36,32 @@ const updateDateTime = () => {
   });
 };
 
+// Set up interval to update time every second
 onMounted(() => {
   timeAndGreeter();
   intervalId = setInterval(timeAndGreeter, 1000);
 });
 
+// Clear interval on component unmount
 onBeforeUnmount(() => {
   clearInterval(intervalId);
 });
 
-let currentHour = new Date().getHours();
-let timeOfDay = ref("");
+let greeterText = ref(""); // ref for greeter text
 
 function greeter() {
-  if (currentHour <= 12) {
-    timeOfDay.value = "Good Morning";
-  } else if (currentHour > 12 && currentHour < 16) {
-    timeOfDay.value = "Good Afternoon";
+  let currentHour = new Date().getHours(); // get 24 hour time format for the greeter
+  //greet the user based on time of day
+  if (currentHour < 12) {
+    greeterText.value = "Good Morning";
+  } else if (currentHour < 16) {
+    greeterText.value = "Good Afternoon";
   } else {
-    timeOfDay.value = "Good Evening";
+    greeterText.value = "Good Evening";
   }
-  console.log(currentHour);
 }
 
+//combine time and greeter functions
 function timeAndGreeter() {
   updateDateTime();
   greeter();

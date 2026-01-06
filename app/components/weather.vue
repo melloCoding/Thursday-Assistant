@@ -5,6 +5,8 @@
     <h1 class="text-2xl">{{ weather?.current?.temp_f ?? "Loading..." }}°F</h1>
     <h2 class="text-xl">Humidity:</h2>
     <h1 class="text-2xl">{{ weather?.current?.humidity ?? "Loading..." }}%</h1>
+    <h2 class="text-xl">Dewpoint in °F:</h2>
+    <h1 class="text-2xl">{{ weather?.current?.dewpoint_f ?? "Loading..." }}</h1>
   </div>
 </template>
 
